@@ -1,0 +1,10 @@
+pandas
+langchain
+langgraph
+langsmith
+langchain-community
+langchain-openai
+tavily-python
+supabase
+loguru
+pygraphviz

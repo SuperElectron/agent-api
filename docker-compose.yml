@@ -1,0 +1,72 @@
+
+services:
+  app:
+    build: chatbot
+    container_name: langchain_app
+    env_file:
+      - ./.env
+    volumes:
+      - ./chatbot:/chatbot
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - TAVILY_API_KEY=${TAVILY_API_KEY}
+      - PYTHONUNBUFFERED=1
+    command: bash -c "sleep infinity"
+    network_mode: host
+    stdin_open: true
+    tty: true
+
+#  postgres:
+#    image: postgres:14
+#    container_name: supabase-postgres
+#    restart: always
+#    environment:
+#      POSTGRES_PASSWORD: supabase
+#      POSTGRES_USER: supabase
+#      POSTGRES_DB: supabase
+#    volumes:
+#      - supabase-data:/var/lib/postgresql/data
+#      - ./setup.sql:/docker-entrypoint-initdb.d/setup.sql
+#    ports:
+#      - "5432:5432"
+#
+#  supabase:
+#    image: supabase/postgres:14.0.0
+#    container_name: supabase
+#    environment:
+#      POSTGRES_PASSWORD: supabase
+#      POSTGRES_USER: supabase
+#      POSTGRES_DB: supabase
+#      ENABLE_DB_CONFIG: "true"
+#    volumes:
+#      - supabase-data:/var/lib/postgresql/data
+#    ports:
+#      - "5433:5432"
+#    depends_on:
+#      - postgres
+#
+#  api:
+#    image: supabase/postgrest:v9.0.0
+#    container_name: supabase-postgrest
+#    restart: always
+#    environment:
+#      PGRST_DB_URI: postgres://supabase:supabase@postgres:5432/supabase
+#      PGRST_DB_SCHEMA: public
+#      PGRST_DB_ANON_ROLE: anon
+#    depends_on:
+#      - postgres
+#    ports:
+#      - "5434:3000"
+#
+#  studio:
+#    image: supabase/studio:v0.3.0
+#    container_name: supabase-studio
+#    restart: always
+#    environment:
+#      SUPABASE_URL: http://localhost:5433
+#      SUPABASE_KEY: "super-secret-key"
+#    ports:
+#      - "5435:5435"
+#
+#volumes:
+#  supabase-data:
