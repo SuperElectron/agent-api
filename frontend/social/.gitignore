@@ -1,31 +1,8 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-venv
-
-# Environments
-.env
-.cache
-
-# VS Code
-.vscode/
-.idea
-
-# specific files
-chatbot/logs
-
-####################################################
-
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# IDE
-.idea
-.vscode
-.cache
 
 # dependencies
 /node_modules
 /.pnp
-.pnpm-store
 .pnp.js
 .yarn/install-state.gz
 
@@ -42,7 +19,6 @@ chatbot/logs
 # misc
 .DS_Store
 *.pem
-.cache
 
 # debug
 npm-debug.log*
@@ -59,4 +35,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
