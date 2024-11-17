@@ -16,15 +16,16 @@ export default async function NewsPage() {
 
     // Fetch news feed
     const { data: news, error: newsError } = await supabase.from("events").select("*");
-    // console.table(news);
     if (newsError) {
-        console.error("Error fetching news:", newsError.message);
+        console.error("Error fetching signal feed:", newsError.message);
         return (
             <div className="text-red-500">
                 Error loading news feed: {newsError.message}
             </div>
         );
     }
+    // console.table(news);
+
     // TODO: create post data (news feed to promote events)
     // TODO: create event data (different search)
     return (
@@ -40,7 +41,7 @@ export default async function NewsPage() {
                                 data={{
                                     event_id: item.id,
                                     activity: item.activity,
-                                    imageSrc: item.imageSrc || "/gatherings/hero.png",
+                                    image: item.image,
                                     text: item.text,
                                     host: item.host || "Host",
                                     postTime: "2024-11-16",

@@ -1,10 +1,10 @@
-import {ReactNode} from 'react';
+import React, {ReactNode} from 'react';
 import {ThemeSwitcher} from "@/components/theme-switcher";
 import {GeistSans} from "geist/font/sans";
 import {ThemeProvider} from "next-themes";
 import "./globals.css";
-import HeaderAuth from "@/components/header-auth";
-
+// import HeaderAuth from "@/components/header-auth";
+import Navbar from "@/components/navbar";
 
 const defaultUrl = process.env.VERCEL_URL
     ? `https://${process.env.VERCEL_URL}`
@@ -16,9 +16,7 @@ export const metadata = {
     description: "The fastest way to build apps with Next.js and Supabase",
 };
 
-export default function RootLayout({children,}: {
-    children: ReactNode;
-}) {
+export default function RootLayout({children}: { children: ReactNode }) {
     return (
         <html lang="en" className={GeistSans.className} suppressHydrationWarning>
         <body className="bg-background text-foreground">
@@ -28,23 +26,24 @@ export default function RootLayout({children,}: {
             enableSystem
             disableTransitionOnChange
         >
-            <main className="min-h-screen flex flex-col items-center">
-                <div className="flex-1 w-full flex flex-col gap-20 items-center">
-                    <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
-                        <div className="w-full max-w-5xl flex justify-between items-center p-3 px-5 text-sm">
-                            {<HeaderAuth/>}
-                        </div>
-                    </nav>
-                    <div className="flex flex-col gap-20 w-full lg:max-w-full p-5">
-                        {children}
-                    </div>
-                    <footer
-                        className="w-full flex items-center justify-center border-t mx-auto text-center text-xs gap-8 py-16">
-                        <p> Powered by Mat </p>
-                        <ThemeSwitcher/>
-                    </footer>
-                </div>
-            </main>
+            <div className="flex flex-col min-h-screen p-2">
+                {/* Header */}
+                <header className="w-full z-10">
+                    <Navbar/>
+                </header>
+
+                {/* Main Content */}
+                <main className="flex-1 flex flex-col items-center w-full h-full pt-[64px]">
+                    {children}
+                </main>
+
+                {/* Footer */}
+                <footer
+                    className="w-full flex items-center justify-center border-t text-center text-xs gap-2 p-2 bg-background z-10">
+                    <p>Powered by Mat</p>
+                    <ThemeSwitcher/>
+                </footer>
+            </div>
         </ThemeProvider>
         </body>
         </html>

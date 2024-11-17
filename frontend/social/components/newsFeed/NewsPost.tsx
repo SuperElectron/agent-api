@@ -7,17 +7,19 @@ interface CardProps {
     data: {
         event_id: string;
         activity: string;
-        imageSrc?: string;
-        text?: string; // Optional user text
-        host: string; // Host field
-        postTime: string; // Post time field
-        groupName: string; // Group name
-        date: string; // Date field
-        price: string; // Price field
+        image?: string;
+        text?: string;
+        host: string;
+        postTime: string;
+        groupName: string;
+        date: string;
+        price: string;
     };
 }
 
 const NewsPost: FC<CardProps> = ({data}: CardProps) => {
+    // TODO: add actions to update heart with backend
+
     return (
         <div className="flex flex-col bg-white shadow-md rounded-lg overflow-hidden border border-gray-200 w-full p-4">
             {/* Top Row: Three Columns */}
@@ -37,7 +39,7 @@ const NewsPost: FC<CardProps> = ({data}: CardProps) => {
                 </div>
 
                 {/* Column 2: Group Name, Date, and Price */}
-                <Link href={`/event/${data.event_id}`}>
+                <Link href={`/c/event/${data.event_id}`}>
                     <div className="text-right text-sm flex flex-col items-end">
                         <p className="font-semibold mb-1">
                             {data.groupName}
@@ -64,11 +66,11 @@ const NewsPost: FC<CardProps> = ({data}: CardProps) => {
             )}
 
             {/* Image Content */}
-            {data.imageSrc && (
+            {data.image && (
                 <div className="mt-4 p-2 flex justify-center items-center">
                     <Image
                         alt={data.activity}
-                        src={data.imageSrc}
+                        src={data.image}
                         height={500}
                         width={350}
                     />

@@ -28,7 +28,7 @@ export default async function EventPage({ params }: { params: { event_id: string
         .eq("id", params.event_id);
     if (error) {
         console.error("Error fetching event data:", error.message);
-        encodedRedirect("error", "/news", error.message);
+        encodedRedirect("error", "/signal", error.message);
     }
     // console.table(eventData);
 

@@ -25,7 +25,7 @@ export async function GET(request: Request) {
         if (!response.ok) {
             throw new Error("Failed to fetch cities from OpenStreetMap");
         }
-        console.table(response);
+        // console.table(response);
         const resp: any[] = await response.json();
         const city: LocationValue = {
             location: resp[0].display_name,
