@@ -14,7 +14,7 @@ import {appRoutes} from "@/utils/routes";
 import Link from "next/link";
 
 interface UserMenuProps {
-    user?: string;
+    user?: any;
 }
 
 const UserMenu: React.FC<UserMenuProps> = ({user}) => {
@@ -45,7 +45,7 @@ const UserMenu: React.FC<UserMenuProps> = ({user}) => {
                         <Menu.Toggle id="user-menu">
                             <button
                                 type="button"
-                                className=" p-4 md:py-1 md:px-2 border-[1px]   border-neutral-200  flex  flex-row  items-center   gap-3   rounded-full   cursor-pointer   hover:shadow-md   transition duration-300"
+                                className=" p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition duration-300"
                             >
                                 <AiOutlineMenu/>
                                 <div className="hidden md:block">
@@ -53,7 +53,7 @@ const UserMenu: React.FC<UserMenuProps> = ({user}) => {
                                 </div>
                             </button>
                         </Menu.Toggle>
-                        <Menu.List className="shadow-[0_0_36px_4px_rgba(0,0,0,0.075)] rounded-xl bg-white text-sm">
+                        <Menu.List className="shadow-[0_0_36px_4px_rgba(0,0,0,0.075)] rounded-xl bg-white text-sm text-[#585858]">
                             {user ? (
                                 <>
                                     {appRoutes.map((item) => (

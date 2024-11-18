@@ -14,8 +14,6 @@ export default async function Search() {
     // console.table(mapData);
 
     return (
-        <div className="h-full w-full flex flex-col">
-            <SearchBody/>
-        </div>
+        <SearchBody/>
     );
 }

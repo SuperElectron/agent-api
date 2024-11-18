@@ -1,9 +1,8 @@
-import React, {ReactNode} from 'react';
+import React, {ReactNode} from "react";
 import {ThemeSwitcher} from "@/components/theme-switcher";
 import {GeistSans} from "geist/font/sans";
 import {ThemeProvider} from "next-themes";
 import "./globals.css";
-// import HeaderAuth from "@/components/header-auth";
 import Navbar from "@/components/navbar";
 
 const defaultUrl = process.env.VERCEL_URL
@@ -26,21 +25,22 @@ export default function RootLayout({children}: { children: ReactNode }) {
             enableSystem
             disableTransitionOnChange
         >
-            <div className="flex flex-col min-h-screen p-2">
+            <div className="flex flex-col min-h-screen">
                 {/* Header */}
-                <header className="w-full z-10">
-                    <Navbar/>
-                </header>
+                {/*<header className="w-full h-16 bg-gray-800 text-white flex items-center px-4 fixed top-0 left-0 z-10">*/}
+                {/*    <Navbar/>*/}
+                {/*</header>*/}
 
                 {/* Main Content */}
-                <main className="flex-1 flex flex-col items-center w-full h-full pt-[64px]">
+                <main className="flex-1 flex flex-col mt-16 mb-16 overflow-hidden">
                     {children}
                 </main>
 
+
                 {/* Footer */}
                 <footer
-                    className="w-full flex items-center justify-center border-t text-center text-xs gap-2 p-2 bg-background z-10">
-                    <p>Powered by Mat</p>
+                    className="w-full h-16 bg-gray-800 text-white flex items-center justify-center fixed bottom-0 left-0 z-10">
+                    <p className="text-sm">Powered by Mat</p>
                     <ThemeSwitcher/>
                 </footer>
             </div>

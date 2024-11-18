@@ -5,14 +5,14 @@ import Link from 'next/link'
 export default async function Index() {
     return (
         <>
-            <section style={{ backgroundColor: '#F6F8FD' }} className="bg-dotted-pattern bg-contain py-5 md:py-10">
+            <section style={{ backgroundColor: '#F6F8FD' }} className="bg-dotted-pattern bg-contain py-5 md:py-10 p-4">
                 <div className="wrapper grid grid-cols-1 gap-5 md:grid-cols-2 2xl:gap-0">
-                    <div className="flex flex-col justify-center gap-8">
-                        <h1>Host, Connect, Celebrate: Your Events, Our Platform!</h1>
-                        <p className="p-regular-20 md:p-regular-24">Book and learn helpful tips from 3,168+ mentors in
-                            world-class companies with our global community.</p>
+                    <div className="flex flex-col justify-center gap-8 p-2">
+                        <h1>Community and Activity</h1>
+                        <h3 className="p-regular-20 md:p-regular-24">
+                            A place to connect you to what you need </h3>
                         <Button size="lg" asChild className="button w-full sm:w-fit">
-                            <Link href="/signal">
+                            <Link href="/feed">
                                 Explore Now
                             </Link>
                         </Button>

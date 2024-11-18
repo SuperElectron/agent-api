@@ -1,59 +1,186 @@
 'use client';
 
-import React, {useState} from "react";
+import React, {Suspense, useState} from "react";
 import dynamic from "next/dynamic";
-import Categories from "@/components/navbar/Categories";
+import {FaStar} from "react-icons/fa";
+import Search from "@/components/navbar/Search";
 
-type geoLocationPin = {
-    lat: number,
-    lng: number,
-}
+type GeoLocationPin = {
+    lat: number;
+    lng: number;
+};
 
-interface HeadingProps {
-
+interface Event {
+    id: number;
+    name: string;
+    rating: number;
+    reviews: number;
+    priceRange: string;
+    address: string;
+    openStatus: string;
+    popupText: string;
+    image: string;
+    tags: string[];
 }
 
 const MapComponent = dynamic(() => import("@/components/Map"), {ssr: false});
 
+const SearchBody: React.FC = () => {
+    const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-const SearchBody: React.FC<HeadingProps> = ({}) => {
+    const toggleSearch = () => setIsSearchOpen(!isSearchOpen);
 
-    const markers = [
-        {lat: 40.7128, lng: -74.006, popupText: "New York City"},
-        {lat: 34.0522, lng: -118.2437, popupText: "Los Angeles"},
+    const markers: GeoLocationPin[] = [
+        {lat: 40.7128, lng: -74.006},
+        {lat: 40.6900402350666, lng: -74.04500426408549},
+        //40.6900402350666, -74.04500426408549
     ];
 
-    // TODO: update so that if nothing is found, it will render these
-    const title = "No exact matches";
-    const subtitle = "Try changing or removing some of your filters.";
-    const gatherings = null;
+    const events: Event[] = [
+        {
+            id: 1,
+            name: "MAYAN COFFEES Organic Specialty Coffee - Roasters - Direct Trade",
+            rating: 4.8,
+            reviews: 1359,
+            priceRange: "€1–10",
+            address: "C/ de Murillo, 54",
+            openStatus: "Opens soon: 7:30 AM",
+            popupText: "MAYAN COFFEES Organic Specialty Coffee",
+            image: "/events/coffee-store.png",
+            tags: ["Dine-in", "Takeaway", "No delivery"],
+        },
+        {
+            id: 2,
+            name: "Cult Café",
+            rating: 4.8,
+            reviews: 944,
+            priceRange: "€10–20",
+            address: "C/ de l'Arquebisbe Mayoral, 7, Bajo",
+            openStatus: "Closed: Opens 8:30 AM",
+            popupText: "Cult Café",
+            image: "/events/coffee-store.png",
+            tags: ["Dine-in", "Kerbside pickup"],
+        },
+        {
+            id: 3,
+            name: "Café Colomer Specialty Coffee Roasters",
+            rating: 4.9,
+            reviews: 111,
+            priceRange: "€1–10",
+            address: "Plaça de Fra Lluís Colomer, 7, Bajo B",
+            openStatus: "Closed: Opens 8:00 AM",
+            popupText: "Café Colomer Specialty Coffee Roasters",
+            image: "/events/coffee-store.png",
+            tags: ["Dine-in", "Takeaway"],
+        },
+        {
+            id: 4,
+            name: "Café Colomer Specialty Coffee Roasters",
+            rating: 4.9,
+            reviews: 111,
+            priceRange: "€1–10",
+            address: "Plaça de Fra Lluís Colomer, 7, Bajo B",
+            openStatus: "Closed: Opens 8:00 AM",
+            popupText: "Café Colomer Specialty Coffee Roasters",
+            image: "/events/coffee-store.png",
+            tags: ["Dine-in", "Takeaway"],
+        },
+        {
+            id: 5,
+            name: "Café Colomer Specialty Coffee Roasters",
+            rating: 4.9,
+            reviews: 111,
+            priceRange: "€1–10",
+            address: "Plaça de Fra Lluís Colomer, 7, Bajo B",
+            openStatus: "Closed: Opens 8:00 AM",
+            popupText: "Café Colomer Specialty Coffee Roasters",
+            image: "/events/coffee-store.png",
+            tags: ["Dine-in", "Takeaway"],
+        },
+        {
+            id: 6,
+            name: "Café Colomer Specialty Coffee Roasters",
+            rating: 4.9,
+            reviews: 111,
+            priceRange: "€1–10",
+            address: "Plaça de Fra Lluís Colomer, 7, Bajo B",
+            openStatus: "Closed: Opens 8:00 AM",
+            popupText: "Café Colomer Specialty Coffee Roasters",
+            image: "/events/coffee-store.png",
+            tags: ["Dine-in", "Takeaway"],
+        },
+    ];
 
     return (
-        <div className="w-full h-full flex flex-col">
-            {/* Categories Section */}
-            <div className="relative z-1 p-2">
-                <Categories/>
+        <div className="flex w-full h-full">
+            {/* Left Column: Scrollable */}
+            <div className="w-1/5 h-full overflow-y-auto p-2 bg-gray-100">
+                <Suspense fallback={<></>}>
+                    <Search clsName="w-full p-2"/>
+                </Suspense>
+
+                {/* Event Cards */}
+                <div className="space-y-4">
+                    {events.map((event) => (
+                        <div
+                            key={event.id}
+                            className="bg-white p-4 flex flex-col border-b"
+                        >
+                            <div className="flex items-center space-x-4">
+                                {/* Details */}
+                                <div className="flex-1">
+                                    <h3 className="font-bold text-sm">{event.name}</h3>
+                                    <div className="flex items-center text-yellow-500 space-x-1 mt-1">
+                                        <FaStar size={14}/>
+                                        <span className="text-sm font-medium">{event.rating}</span>
+                                        <span className="text-xs text-gray-500">
+                                    ({event.reviews})
+                                </span>
+                                        <span className="text-gray-500">· {event.priceRange}</span>
+                                    </div>
+                                    <p className="text-xs text-gray-600 mt-1">{event.address}</p>
+                                    <p
+                                        className={`text-xs font-medium mt-1 ${
+                                            event.openStatus.includes("Closed")
+                                                ? "text-red-500"
+                                                : "text-green-500"
+                                        }`}
+                                    >
+                                        {event.openStatus}
+                                    </p>
+                                </div>
+
+                                {/* Image */}
+                                <img
+                                    src={event.image}
+                                    alt={event.name}
+                                    className="w-16 h-16 object-cover rounded-md"
+                                />
+                            </div>
+
+                            {/* Tags Row */}
+                            <div className="flex flex-wrap gap-2 mt-3">
+                                {event.tags.map((tag, index) => (
+                                    <span
+                                        key={index}
+                                        className="text-xs bg-gray-200 px-2 py-1 rounded-full text-gray-700"
+                                    >
+                                {tag}
+                            </span>
+                                ))}
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
 
-            {/* Map Section */}
-            <div className="flex-1 w-full">
+            {/* Right Column: Non-scrollable */}
+            <div className="flex-1 h-full bg-gray-500">
                 <MapComponent markers={markers}/>
             </div>
         </div>
 
-
-        // <div className="w-full h-full max-w-screen-lg">
-        //     <MapComponent markers={markers}/>
-        //     {/*{gatherings ? (*/}
-        //     {/*    <div className="text-center">*/}
-        //     {/*        <h3 className="font-bold leading-[1.25]">{title}</h3>*/}
-        //     {/*        <p className="font-light text-neutral-500 md:mt-1 mt-2">{subtitle}</p>*/}
-        //     {/*    </div>*/}
-        //     {/*) : (<></>)*/}
-        //     {/*}*/}
-        // </div>
-    )
-        ;
+    );
 };
 
 export default SearchBody;
