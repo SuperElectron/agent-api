@@ -1,16 +1,10 @@
 'use client';
 
 import React, {Suspense, useState} from "react";
-import dynamic from "next/dynamic";
 import {FaStar} from "react-icons/fa";
 import Search from "./Search";
 
-type GeoLocationPin = {
-    lat: number;
-    lng: number;
-};
-
-interface Event {
+export type Event = {
     id: number;
     name: string;
     rating: number;
@@ -23,18 +17,7 @@ interface Event {
     tags: string[];
 }
 
-const MapComponent = dynamic(() => import("@/components/Map"), {ssr: false});
-
-const SearchBody: React.FC = () => {
-    const [isSearchOpen, setIsSearchOpen] = useState(false);
-
-    const toggleSearch = () => setIsSearchOpen(!isSearchOpen);
-
-    const markers: GeoLocationPin[] = [
-        {lat: 40.7128, lng: -74.006},
-        {lat: 40.6900402350666, lng: -74.04500426408549},
-        //40.6900402350666, -74.04500426408549
-    ];
+const SearchBar: React.FC = () => {
 
     const events: Event[] = [
         {
@@ -111,10 +94,10 @@ const SearchBody: React.FC = () => {
         },
     ];
 
+
     return (
         <div className="flex w-full h-full">
-            {/* Left Column: Scrollable */}
-            <div className="w-1/5 h-full overflow-y-auto p-2">
+            <div className="overflow-y-auto p-2">
                 <Suspense fallback={<></>}>
                     <Search clsName="w-full p-2"/>
                 </Suspense>
@@ -173,14 +156,8 @@ const SearchBody: React.FC = () => {
                     ))}
                 </div>
             </div>
-
-            {/* Right Column: Non-scrollable */}
-            <div className="flex-1 h-full">
-                <MapComponent markers={markers}/>
-            </div>
         </div>
-
     );
 };
 
-export default SearchBody;
+export default SearchBar;

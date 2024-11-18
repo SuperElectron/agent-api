@@ -1,3 +1,5 @@
+'use server';
+
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { encodedRedirect } from "@/utils/utils";
@@ -24,12 +26,12 @@ export default async function NewsPage() {
             </div>
         );
     }
-    console.table(news[0]);
+    // console.table(news[0]);
 
     // TODO: create post data (news feed to promote events)
     // TODO: create event data (different search)
     return (
-        <div className="flex-1 w-full flex flex-col gap-6 p-4 md:p-8">
+        <div className="flex-1 w-full gap-6 p-4 md:p-8 overflow-y-scroll ">
             {news && news.length > 0 ? (
                 <div className="flex flex-col gap-6 items-center">
                     {news.map((item) => (

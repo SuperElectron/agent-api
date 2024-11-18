@@ -10,7 +10,7 @@ interface GoogleMapProps {
 }
 
 const containerStyle = {
-    width: "100%",
+//     width: "100%",
     height: "100%",
 };
 
@@ -51,14 +51,14 @@ const GoogleMapComponent: React.FC<GoogleMapProps> = ({markers}) => {
         //     position: google.maps.ControlPosition.LEFT_CENTER,
         // },
         mapTypeControlOptions: {
-            position: google.maps.ControlPosition.LEFT_CENTER,
+            position: google.maps.ControlPosition.RIGHT_TOP,
             style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
         },
         zoomControlOptions: {
-            position: google.maps.ControlPosition.LEFT_CENTER,
+            position: google.maps.ControlPosition.RIGHT_BOTTOM,
         },
         streetViewControlOptions: {
-            position: google.maps.ControlPosition.LEFT_CENTER,
+            position: google.maps.ControlPosition.RIGHT_BOTTOM,
         },
     };
 
@@ -74,7 +74,7 @@ const GoogleMapComponent: React.FC<GoogleMapProps> = ({markers}) => {
                 ))}
             </GoogleMap>
             <button
-                className="absolute bottom-20 right-4 bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-600"
+                className="absolute bottom-5 right-20 bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-600"
                 onClick={fitBoundsToMarkers}
             >
                 <MdGpsFixed size={18} />

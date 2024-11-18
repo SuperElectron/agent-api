@@ -21,7 +21,8 @@ services:
     container_name: frontend
     build: frontend
     command: [
-      "bash", "-c", "sleep infinity"
+      "bash", "-c", "pnpm dev"
+#      "bash", "-c", "sleep infinity"
 #      "
 #            if [ ! -d node_modules ]; then
 #               pnpm install --shamefully-hoist;

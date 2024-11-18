@@ -1,8 +1,8 @@
 import Link from "next/link";
-import {Button} from "./ui/button";
+import {Button} from "@/components/ui/button";
 
 
-export default async function AuthButton() {
+export default function AuthButton() {
 
     return (
         <div className="flex gap-2 text-gray-500">

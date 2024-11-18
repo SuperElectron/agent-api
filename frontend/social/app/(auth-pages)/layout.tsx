@@ -1,5 +1,5 @@
 import React, {ReactNode} from "react";
-import {ThemeSwitcher} from "@/components/theme-switcher";
+import {ThemeSwitcher} from "@/components/ui/theme-switcher";
 import {GeistSans} from "geist/font/sans";
 import {ThemeProvider} from "next-themes";
 import "@/app/globals.css";
@@ -12,18 +12,13 @@ export default async function AuthLayout({children}: { children: ReactNode }) {
     const {data} = await supabase.auth.getUser();
 
     return (
-        <html lang="en" className={GeistSans.className} suppressHydrationWarning>
-        <body className="bg-background text-foreground">
         <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange
         >
-            <header
-                className="w-full h-16 bg-gray-800 text-white flex items-center px-4 fixed top-0 left-0 z-10">
-                <Navbar data={data}/>
-            </header>
+            <Navbar data={data}/>
 
             {/* Main Content */}
             <main className="flex justify-center mt-16 mb-16 p-4">
@@ -38,7 +33,5 @@ export default async function AuthLayout({children}: { children: ReactNode }) {
                 <ThemeSwitcher/>
             </footer>
         </ThemeProvider>
-        </body>
-        </html>
     );
 }

@@ -1,4 +1,5 @@
 "use client";
+
 import React from "react";
 import {useRouter} from "next/navigation";
 
@@ -8,7 +9,7 @@ import MenuItem from "./MenuItem";
 import Menu from "@/components/Menu";
 import {signOutAction} from "@/app/actions";
 
-import Modal from "@/components/modals/Modal";
+import Modal from "./Modal";
 
 import {appRoutes} from "@/utils/routes";
 import Link from "next/link";
