@@ -3,7 +3,7 @@
 import React, {Suspense, useState} from "react";
 import dynamic from "next/dynamic";
 import {FaStar} from "react-icons/fa";
-import Search from "@/components/navbar/Search";
+import Search from "./Search";
 
 type GeoLocationPin = {
     lat: number;
@@ -114,7 +114,7 @@ const SearchBody: React.FC = () => {
     return (
         <div className="flex w-full h-full">
             {/* Left Column: Scrollable */}
-            <div className="w-1/5 h-full overflow-y-auto p-2 bg-gray-100">
+            <div className="w-1/5 h-full overflow-y-auto p-2">
                 <Suspense fallback={<></>}>
                     <Search clsName="w-full p-2"/>
                 </Suspense>
@@ -124,7 +124,7 @@ const SearchBody: React.FC = () => {
                     {events.map((event) => (
                         <div
                             key={event.id}
-                            className="bg-white p-4 flex flex-col border-b"
+                            className="p-4 flex flex-col border-b"
                         >
                             <div className="flex items-center space-x-4">
                                 {/* Details */}
@@ -175,7 +175,7 @@ const SearchBody: React.FC = () => {
             </div>
 
             {/* Right Column: Non-scrollable */}
-            <div className="flex-1 h-full bg-gray-500">
+            <div className="flex-1 h-full">
                 <MapComponent markers={markers}/>
             </div>
         </div>

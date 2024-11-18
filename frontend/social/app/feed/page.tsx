@@ -24,7 +24,7 @@ export default async function NewsPage() {
             </div>
         );
     }
-    // console.table(news);
+    console.table(news[0]);
 
     // TODO: create post data (news feed to promote events)
     // TODO: create event data (different search)

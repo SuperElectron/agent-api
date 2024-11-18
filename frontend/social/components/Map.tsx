@@ -74,7 +74,7 @@ const GoogleMapComponent: React.FC<GoogleMapProps> = ({markers}) => {
                 ))}
             </GoogleMap>
             <button
-                className="absolute top-4 left-4 bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-600"
+                className="absolute bottom-20 right-4 bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-600"
                 onClick={fitBoundsToMarkers}
             >
                 <MdGpsFixed size={18} />
