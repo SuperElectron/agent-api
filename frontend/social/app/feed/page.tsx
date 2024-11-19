@@ -3,7 +3,7 @@
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { encodedRedirect } from "@/utils/utils";
-import NewsPost from "@/components/newsFeed/NewsPost";
+import NewsFeed from "@/components/NewsFeed/Feed";
 
 export default async function NewsPage() {
     const supabase = await createClient();
@@ -31,33 +31,6 @@ export default async function NewsPage() {
     // TODO: create post data (news feed to promote events)
     // TODO: create event data (different search)
     return (
-        <div className="flex-1 w-full gap-6 p-4 md:p-8 overflow-y-scroll ">
-            {news && news.length > 0 ? (
-                <div className="flex flex-col gap-6 items-center">
-                    {news.map((item) => (
-                        <div
-                            key={item.id}
-                            className="w-full sm:w-3/4 lg:w-1/2 px-2" // Adjust widths dynamically
-                        >
-                            <NewsPost
-                                data={{
-                                    event_id: item.id,
-                                    activity: item.activity,
-                                    image: item.image,
-                                    text: item.text,
-                                    host: item.host || "Host",
-                                    postTime: "2024-11-16",
-                                    groupName: item.group_name,
-                                    date: item.date || "2024-11-16",
-                                    price: item.price,
-                                }}
-                            />
-                        </div>
-                    ))}
-                </div>
-            ) : (
-                <p className="text-center text-gray-600">No news available at the moment.</p>
-            )}
-        </div>
+        <NewsFeed news={news} />
     );
 }

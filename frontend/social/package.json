@@ -8,6 +8,8 @@
   "dependencies": {
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
+    "@hookform/resolvers": "^3.9.1",
+    "@mui/icons-material": "^6.1.7",
     "@mui/material": "^6.1.7",
     "@radix-ui/react-checkbox": "^1.1.1",
     "@radix-ui/react-dropdown-menu": "^2.1.1",
@@ -41,6 +43,7 @@
     "react-leaflet": "^4.2.1",
     "react-select": "^5.8.3",
     "swiper": "^11.1.14",
+    "zod": "^3.23.8",
     "zustand": "^5.0.1"
   },
   "devDependencies": {
