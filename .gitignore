@@ -1,3 +1,5 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 venv
@@ -12,15 +14,6 @@ venv
 
 # specific files
 chatbot/logs
-
-####################################################
-
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# IDE
-.idea
-.vscode
-.cache
 
 # dependencies
 /node_modules
@@ -60,3 +53,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+logs
+*.log
