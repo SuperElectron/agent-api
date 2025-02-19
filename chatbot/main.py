@@ -32,7 +32,7 @@ def _print_event(event: dict, _printed: set, max_length=10000):
 
 if __name__ == "__main__":
     mgr = LangGraphManager()
-    mgr.save_graph(location='graph.png')
+    # mgr.save_graph(location='graph.png')
 
     # create unique chat id (passenger_id to help retrieve client info)
     config = {

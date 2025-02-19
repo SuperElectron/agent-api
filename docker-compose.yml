@@ -16,6 +16,34 @@ services:
     stdin_open: true
     tty: true
 
+  frontend:
+    restart: unless-stopped
+    container_name: frontend
+    build: frontend
+    command: [
+      "bash", "-c", "pnpm dev"
+#      "bash", "-c", "sleep infinity"
+#      "
+#            if [ ! -d node_modules ]; then
+#               pnpm install --shamefully-hoist;
+#            fi;
+#            if [ -f /frontend/.env.local ]; then
+#              echo '.env.local detected, running in dev mode';
+#              pnpm dev;
+#            elif [ -f .env.production ]; then
+#              echo '/frontend/.env.production detected, running in production mode';
+#              pnpm build;
+#              pnpm start;
+#            else
+#              echo 'No environment file detected. Please ensure .env.local or .env.production is present.';
+#              exit 1;
+#            fi
+#          "
+    ]
+    volumes:
+      - "./frontend/social:/frontend:cached"
+    network_mode: host
+
 #  postgres:
 #    image: postgres:14
 #    container_name: supabase-postgres
