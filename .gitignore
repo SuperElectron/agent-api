@@ -9,3 +9,6 @@ venv
 # VS Code
 .vscode/
 .idea
+
+logs
+*.log
