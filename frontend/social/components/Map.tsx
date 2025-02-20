@@ -16,7 +16,7 @@ const containerStyle = {
 
 const GoogleMapComponent: React.FC<GoogleMapProps> = ({markers}) => {
     const {isLoaded, loadError} = useLoadScript({
-        googleMapsApiKey: "AIzaSyDB_U0l4Bug2TXRvCPox_acSzaVWma1vIE",
+        googleMapsApiKey: `${process.env.NEXT_GOOGLE_API_KEY}`,
     });
 
     const mapRef = useRef<google.maps.Map | null>(null);
